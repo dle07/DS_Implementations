@@ -1,18 +1,20 @@
 #ifndef NODE_
 #define NODE_
 
-template <typename T>
+template <typename xType>
 class Node{
+
     private:
-    ItemType data;
-    Node* next;
+    xType data;
+    Node<xType>* next;
+
     public:
     Node();
-    Node(T data);
-    T getItem();
-    Node* getNext();
+    Node(xType data);
+    xType getItem();
+    Node<xType>* getNext() const;
     void setNext(Node* node);
-    void setData( T data);
+    void setData(xType data);
 
 };
 

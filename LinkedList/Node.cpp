@@ -1,32 +1,34 @@
 #include "Node.hpp"
 
 
-template <typename T>
-Node <T> :: Node(){
-
+template <typename xType>
+Node <xType> :: Node() : data(NULL), next(nullptr){
+    
 }
 
-template <typename T>
-Node <T> :: Node(T data){
-    this-> setData(data);
+template <typename xType>
+Node <xType> :: Node(xType data):data(data), next(nullptr){
+    
 }
 
-template <typename T>
-T Node <T> ::  getItem(){
+template <typename xType>
+xType Node <xType> ::  getItem(){
     return this->data;
 }
 
-template <typename T>
-Node* Node <T> :: getNext(){
+
+template <typename xType>
+Node<xType>* Node<xType> :: getNext() const{
     return this->next;
 }
 
-template <typename T>
-void Node <T> :: setNext(Node* node){
+
+template <typename xType>
+void Node <xType> :: setNext(Node<xType>* node){
     this->next = node;
 }
 
-template <typename T>
-void Node <T> :: setData(T data){
+template <typename xType>
+void Node <xType> :: setData(xType data){
     this->data = data;
 }

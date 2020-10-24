@@ -26,17 +26,30 @@ class DoublyLinkedList{
    //Destructor
    ~DoublyLinkedList();
 
-   bool insert(const ItemType &item, const int &position);
-       //inserts item at position in caller list
-    
-   bool remove(const int &position);           
-       //removes the node at position
+    /** Adds a element to the back of the list */
+    void add(const ItemType &item);
 
+    /** inserts item at position in caller list */
+   bool insert(const ItemType &item, const int &position);
+
+   /** removes first instance of the element in the list */
+    void removeByElement( const ItemType & item);
+
+    /** checks to see if a element in the list exists or not */
+    bool exists(const ItemType &item);
+
+    /** removes the node at position */
+   bool remove(const int &position);           
+    
+    /**  returns the number of the nodes in the calling list*/
    int getSize() const;                        
        // returns the number of the nodes in the calling list
     
+    // returns a copy of the headPtr
    DoubleNode<ItemType> *getHeadPtr() const;   
-       // returns a copy of the headPtr
+       
+    /** Returns the tailPtr */  
+    DoubleNode<ItemType> *getTailptr() const;
 
    DoubleNode<ItemType> *getAtPos(const int &pos) const; 
    // returns a pointer to the node located at pos

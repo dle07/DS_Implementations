@@ -18,5 +18,5 @@ class Node{
 
 };
 
-#include "Node.cpp"
+
 #endif

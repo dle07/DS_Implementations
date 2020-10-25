@@ -15,6 +15,8 @@
 #include "./LinkedList/Node.cpp"
 #include "./LinkedList/LinkedList.hpp"
 #include "./LinkedList/LinkedList.cpp"
+#include "./Queue/QueueList.hpp"
+#include "./Queue/QueueList.cpp"
 using std :: string;
 using std :: cout;
 using std :: endl;
@@ -22,7 +24,25 @@ using std :: cin;
 
 
 int main(){
-    LinkedList<int> myStringList;
+
+    QueueList<int> myQueue;
+    for( int i=1; i< 11 ; i++){
+        myQueue.enQueue(i);
+    }
+    myQueue.deQueue();
+    myQueue.display();
+    
+    cout<<"Size: "<<myQueue.size()<<endl;
+    cout<<"Hello World!"<<endl;
+    return 0;
+}
+
+
+/*
+
+
+
+LinkedList<int> myStringList;
     cout<<myStringList.getItemCount()<<endl;
     for( int i=0; i<10; i++){
         myStringList.addFront(i);
@@ -41,5 +61,5 @@ int main(){
     myStringList.print();
     cout<<"ItemCount: " <<myStringList.getItemCount()<<endl;
     cout<<"Hello World!"<<endl;
-    return 0;
-}
+
+    */

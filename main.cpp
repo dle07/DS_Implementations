@@ -26,12 +26,16 @@ using std :: cin;
 int main(){
 
     QueueList<int> myQueue;
+    myQueue.enQueue(1);
+    myQueue.deQueue();
+    
+    /*
     for( int i=1; i< 11 ; i++){
         myQueue.enQueue(i);
     }
     myQueue.deQueue();
     myQueue.display();
-    
+    */
     cout<<"Size: "<<myQueue.size()<<endl;
     cout<<"Hello World!"<<endl;
     return 0;

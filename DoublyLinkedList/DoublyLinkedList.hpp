@@ -9,35 +9,35 @@ using std :: cout;
 using std :: endl;
 
 
-template <typename ItemType>
+template <typename xType>
 class DoublyLinkedList{
 
     private:
-    DoubleNode <ItemType>* head;
-    DoubleNode <ItemType>* tail;
+    DoubleNode <xType>* head;
+    DoubleNode <xType>* tail;
     int itemCount;
 
    public:
    DoublyLinkedList();
 
    //Copy Constructor 
-   DoublyLinkedList(const DoublyLinkedList<ItemType> &target);
+   DoublyLinkedList(const DoublyLinkedList<xType> &target);
 
    //Destructor
    ~DoublyLinkedList();
 
     /** Adds a element to the back of the list */
-    void add(const ItemType &item);
+    void add(const xType &item);
 
     /** inserts item at position in caller list */
-   bool insert(const ItemType &item, const int &position);
+   bool insert(const xType &item, const int &position);
 
    /** removes first instance of the element in the list */
-    void removeByElement( const ItemType & item);
+    void removeByElement( const xType & item);
 
     /** checks to see if a element in the list exists or not */
-    bool exists(const ItemType &item);
-
+    bool exists(const xType &item);
+    void setSize(int val);
     /** removes the node at position */
    bool remove(const int &position);           
     
@@ -46,12 +46,12 @@ class DoublyLinkedList{
        // returns the number of the nodes in the calling list
     
     // returns a copy of the headPtr
-   DoubleNode<ItemType> *getHeadPtr() const;   
+   DoubleNode<xType> *getHeadPtr() const;   
        
     /** Returns the tailPtr */  
-    DoubleNode<ItemType> *getTailptr() const;
+    DoubleNode<xType> *getTailptr() const;
 
-   DoubleNode<ItemType> *getAtPos(const int &pos) const; 
+   DoubleNode<xType> *getAtPos(const int &pos) const; 
    // returns a pointer to the node located at pos
 
    bool isEmpty() const;                       
@@ -60,7 +60,7 @@ class DoublyLinkedList{
    void clear();                               
        // clears the list
 
-   int getIndexOf(const ItemType &item) const; 
+   int getIndexOf(const xType &item) const; 
        // returns the position of the given item in the list, -1 otherwise
 
    void display() const;                       
@@ -69,8 +69,11 @@ class DoublyLinkedList{
    void displayBackwards() const;              
        // prints the contents of the calling list in reverse order
 
-   DoublyLinkedList<ItemType> interleave(const DoublyLinkedList<ItemType> &a_list); 
+   DoublyLinkedList<xType> interleave(const DoublyLinkedList<xType> &a_list); 
        // returns the interleaved list of the calling and parameter lists
+
+    void setHeadPtr(DoubleNode<xType>* node);
+    void setTailPtr(DoubleNode<xType>* node);
 };
 
 

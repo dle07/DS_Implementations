@@ -1,23 +1,23 @@
 #ifndef DOUBLE_NODE_
 #define DOUBLE_NODE_
 
-template<typename ItemType>
+template<typename xType>
 class DoubleNode{
 
     private:
-    ItemType item_;
-    DoubleNode <ItemType>* prev;
-    DoubleNode <ItemType>* next;
+    xType item_;
+    DoubleNode <xType>* prev;
+    DoubleNode <xType>* next;
     
     public:
     DoubleNode();
-    DoubleNode(ItemType item);
-    void setItem(const ItemType &anItem);
-    void setPrevious(DoubleNode<ItemType> *previousNodePtr);
-    void setNext(DoubleNode<ItemType> *nextNodePtr);
-    ItemType getItem() const;
-    DoubleNode<ItemType> *getNext() const;
-    DoubleNode<ItemType> *getPrevious() const;
+    DoubleNode(xType item);
+    void setItem(const xType &anItem);
+    void setPrevious(DoubleNode<xType> *previousNodePtr);
+    void setNext(DoubleNode<xType> *nextNodePtr);
+    xType getItem() const;
+    DoubleNode<xType> *getNext() const;
+    DoubleNode<xType> *getPrevious() const;
 
     
 

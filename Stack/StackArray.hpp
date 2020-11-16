@@ -4,6 +4,10 @@
 
 
 /*
+    There are two efficent ways to implement a stack, a linked list approach, and the dynamic array approach
+    This will be a dynamic array based approach, it's arguably the easiest approach
+
+
     First in, last out , FILOOOooooooooooo
     A Stack is a first in, last out structure. The user can push an item to the stack, 
     and items can only leave the stack from the "top" or the "start", hence FILO.

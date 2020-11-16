@@ -8,14 +8,15 @@ LinkedList<xType> :: LinkedList():itemCount(0), head(nullptr){
 
 template <typename xType>
 LinkedList<xType> :: ~LinkedList(){
-    Node<xType>* prev = head;
+    Node<xType>* temp = head;
     Node<xType>* curr = head;
     while( curr ){
-        curr = curr ->getNext();
-        delete prev;
-        prev = curr;
+        temp = curr ->getNext();
+        delete curr;
+        curr = temp;
     }
 }
+
 //Deep Copy Constructor
 template <typename xType>
 LinkedList<xType> :: LinkedList(const LinkedList<xType> &target){

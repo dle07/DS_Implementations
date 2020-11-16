@@ -12,15 +12,15 @@ Creates a Deep copy of a DoublyLinkedList by looping through the given List
 
 */
 //Default no-args constructor
-template<typename ItemType>
-DoublyLinkedList <ItemType> :: DoublyLinkedList():
+template<typename xType>
+DoublyLinkedList <xType> :: DoublyLinkedList():
 head(nullptr),tail(nullptr), itemCount(0){
     
 }
 
 /** Deep Copy Constructor */
-template <typename ItemType>
-DoublyLinkedList <ItemType> :: DoublyLinkedList(const DoublyLinkedList<ItemType> &target){
+template <typename xType>
+DoublyLinkedList <xType> :: DoublyLinkedList(const DoublyLinkedList<xType> &target){
 this->itemCount = target.itemCount;
 // Case 1) Copy List has 0 items
 if( target.head == nullptr){
@@ -29,7 +29,7 @@ if( target.head == nullptr){
     return;
 }
 //creates a node on, head is set to that node
-head = new DoubleNode<ItemType>(target.head->getItem());
+head = new DoubleNode<xType>(target.head->getItem());
 //Case 2) Copy List has only 1 item
 //Checks to see if the List has only one node, if so, set the tail to the head,return;
 if( target.head->getNext == nullptr ){
@@ -38,12 +38,12 @@ if( target.head->getNext == nullptr ){
 }
 /* Case 3) Copy List's itemCount >1
     */
-DoubleNode <ItemType> * prev=head;
-DoubleNode <ItemType> * currOriginalPtr=target.head;
+DoubleNode <xType> * prev=head;
+DoubleNode <xType> * currOriginalPtr=target.head;
     while(currOriginalPtr->getNext()){
         //Creates a new DoubleNode, advances the next node, 
         currOriginalPtr = currOriginalPtr->getNext();
-        DoubleNode<ItemType> temp = new DoubleNode<ItemType>(currOriginalPtr->getItem());
+        DoubleNode<xType> temp = new DoubleNode<xType>(currOriginalPtr->getItem());
         temp.setPrevious(prev);
         prev ->setNext(temp);
         prev = prev->getNext();
@@ -53,32 +53,32 @@ DoubleNode <ItemType> * currOriginalPtr=target.head;
 }
 
 /** Destructor To clear up memory once a DoublyLinkedList goes out of scope */
-template <typename ItemType>
-DoublyLinkedList <ItemType> :: ~DoublyLinkedList(){
+template <typename xType>
+DoublyLinkedList <xType> :: ~DoublyLinkedList(){
     // No need to check for these conditions as the loop takes care of these cases
     /* if(itemCount == 0 ) return;
     if(itemCount == 1 ) { delete head; return;}  */
     //Loop through List, deleting each node
-    DoubleNode<ItemType>* curr = head;
+    DoubleNode<xType>* curr = head;
     while(curr){
-        DoubleNode<ItemType>* tempNext = curr->getNext();
+        DoubleNode<xType>* tempNext = curr->getNext();
         delete curr;
         curr = tempNext;
     }
 }
 
 //
-template <typename ItemType>
-void DoublyLinkedList <ItemType> :: add(const ItemType &item){
+template <typename xType>
+void DoublyLinkedList <xType> :: add(const xType &item){
     // If the list is empty
     if( this-> head == nullptr){
-        this->head = new DoubleNode <ItemType>(item);
+        this->head = new DoubleNode <xType>(item);
         tail = head;
         this->itemCount ++;
     }
     //If the list isn't empty
     if(this -> tail != nullptr){
-    DoubleNode <ItemType>* temp = new DoubleNode<ItemType>(item);
+    DoubleNode <xType>* temp = new DoubleNode<xType>(item);
     temp->setPrevious(this->tail->getPrevious());
     this->tail->getPrevious()->setNext(temp);
     tail = temp;
@@ -88,42 +88,42 @@ void DoublyLinkedList <ItemType> :: add(const ItemType &item){
 
 
 //Insert has quite the number of edge cases, be wary young one.
-template<typename ItemType>
-bool DoublyLinkedList <ItemType> :: insert(const ItemType &item, const int &position){
+template<typename xType>
+bool DoublyLinkedList <xType> :: insert(const xType &item, const int &position){
 
     //No position exists, return false
     if(position > itemCount+1 || position <=0 )return false;
     //Edge Case 1) Where the insertion node is at the beginning and the position is at 1, no need to check for positoin ==1, as it's implied by out first if statement above
     else if( head == nullptr ){
-        head = new DoubleNode<ItemType>(item);
+        head = new DoubleNode<xType>(item);
         tail = head;
     }
     //Edge Case 1) If the insertion position is at the beginning, creates a pointer to the head node, sets the head to a newly created DoubleNode, sets head-> next to the temp, and finally established the link by setting temp's prev to the head
     else if( position ==1 ){
-        DoubleNode<ItemType>* temp = head;
-        head= new DoubleNode<ItemType>(item);
+        DoubleNode<xType>* temp = head;
+        head= new DoubleNode<xType>(item);
         head->setNext(temp);
         temp->setPrevious(head);
     }
     //Edge case 2) If the insertion position is at the very end of the list, traverse to the last node, create a new node, set the last node's next field to the address of the newly created node, set the newly created node's prev field to the curr node, set tail  to the newly created node
     else if(position == itemCount +1){
-        DoubleNode <ItemType> * curr = head;
+        DoubleNode <xType> * curr = head;
         // To traverse to the end, we can do the classic while(curr->getNext()) method, or we can use a for loop, for( int i=1; i<itemCount; i++){ curr = curr->getNext();}
         while(curr->getNext()){
             curr = curr->getNext();
         }
-        DoubleNode<ItemType>* temp = new DoubleNode<ItemType>(item);
+        DoubleNode<xType>* temp = new DoubleNode<xType>(item);
         curr->setNext(temp);
         temp->setPrevious(curr);
         tail=temp;
     }
     //Majority of the case, where the insertion position is between two adjacent DoubleNodes
     else{
-        DoubleNode <ItemType>* curr = head;
+        DoubleNode <xType>* curr = head;
         for( int i = 1; i< position; i++){
         curr = curr->getNext();
         }
-        DoubleNode<ItemType> temp = new DoubleNode<ItemType>(item);
+        DoubleNode<xType> temp = new DoubleNode<xType>(item);
         temp->setPrevious(curr->getPrevious());
         temp->setNext(curr->getNext());
         curr->getPrevious()->setNext(temp);
@@ -134,9 +134,9 @@ bool DoublyLinkedList <ItemType> :: insert(const ItemType &item, const int &posi
 
 };
 
-template <typename ItemType>
-void DoublyLinkedList <ItemType> :: removeByElement(const ItemType & item){
-    DoubleNode<ItemType>* curr = this->head;
+template <typename xType>
+void DoublyLinkedList <xType> :: removeByElement(const xType & item){
+    DoubleNode<xType>* curr = this->head;
 
     if( curr != nullptr && curr -> getItem() == item){
             //Special case, if target node is at beginning and it's the only node
@@ -145,7 +145,7 @@ void DoublyLinkedList <ItemType> :: removeByElement(const ItemType & item){
                 head = nullptr;
                 tail = nullptr;
             }else{
-                DoubleNode <ItemType>* temp = head ->getNext();
+                DoubleNode <xType>* temp = head ->getNext();
                 temp->setPrevious(nullptr);
                 delete head;
                 head = temp;
@@ -172,9 +172,9 @@ void DoublyLinkedList <ItemType> :: removeByElement(const ItemType & item){
     }
 }
 
-template <typename ItemType>
-bool DoublyLinkedList <ItemType> :: exists( const ItemType &item){
-    DoubleNode<ItemType>* curr = this->head;
+template <typename xType>
+bool DoublyLinkedList <xType> :: exists( const xType &item){
+    DoubleNode<xType>* curr = this->head;
     while(curr){
         if( curr->getItem() == item){
             return true;
@@ -183,8 +183,8 @@ bool DoublyLinkedList <ItemType> :: exists( const ItemType &item){
     return false;
 }
 
-template <typename ItemType>
-bool DoublyLinkedList <ItemType> :: remove(const int &position){
+template <typename xType>
+bool DoublyLinkedList <xType> :: remove(const int &position){
     //No such DoubleNode exists in the List, return false immediately
     if( position <0 || position > this-> itemCount) return false;
     else if( position == 1){
@@ -198,7 +198,7 @@ bool DoublyLinkedList <ItemType> :: remove(const int &position){
         }
     }
     else if(position == itemCount){
-        DoubleNode<ItemType>* curr = head;
+        DoubleNode<xType>* curr = head;
         while(curr->getNext()){
             curr=curr->getNext();
             curr->getPrevious()->setNext(nullptr);
@@ -206,7 +206,7 @@ bool DoublyLinkedList <ItemType> :: remove(const int &position){
             delete curr;
         }
     }else{
-        DoubleNode<ItemType>* curr = head;
+        DoubleNode<xType>* curr = head;
         for(int i=1; i< position ;i++){
             curr = curr->getNext();
             curr->getPrevious()->setNext(curr->getNext());
@@ -220,23 +220,23 @@ bool DoublyLinkedList <ItemType> :: remove(const int &position){
 }
 
 
-template <typename ItemType>
-int DoublyLinkedList<ItemType> :: getSize() const{
+template <typename xType>
+int DoublyLinkedList<xType> :: getSize() const{
     return this->itemCount;
 }
 
-template <typename ItemType>
-DoubleNode<ItemType>* DoublyLinkedList<ItemType> :: getHeadPtr() const{
+template <typename xType>
+DoubleNode<xType>* DoublyLinkedList<xType> :: getHeadPtr() const{
     return this->head;
 }
 
-template <typename ItemType>
-DoubleNode<ItemType>* DoublyLinkedList<ItemType> :: getTailptr() const{
+template <typename xType>
+DoubleNode<xType>* DoublyLinkedList<xType> :: getTailptr() const{
     return this-> tail;
 }
-template <typename ItemType>
-DoubleNode<ItemType>* DoublyLinkedList<ItemType> :: getAtPos(const int &pos) const{
-    DoubleNode<ItemType>* curr = head;
+template <typename xType>
+DoubleNode<xType>* DoublyLinkedList<xType> :: getAtPos(const int &pos) const{
+    DoubleNode<xType>* curr = head;
     if( pos <0 || pos > itemCount){
         return head;
     }
@@ -246,19 +246,19 @@ DoubleNode<ItemType>* DoublyLinkedList<ItemType> :: getAtPos(const int &pos) con
     return curr;
 }
 
-template <typename ItemType>
-bool DoublyLinkedList<ItemType> :: isEmpty() const{
+template <typename xType>
+bool DoublyLinkedList<xType> :: isEmpty() const{
     return itemCount > 0 ? false :true ;
 }
 
-template <typename ItemType>
-void DoublyLinkedList<ItemType> :: clear(){
+template <typename xType>
+void DoublyLinkedList<xType> :: clear(){
 
 }
 
-template <typename ItemType>
-int DoublyLinkedList<ItemType> :: getIndexOf(const ItemType & item) const{
-    DoubleNode<ItemType>* curr= head;
+template <typename xType>
+int DoublyLinkedList<xType> :: getIndexOf(const xType & item) const{
+    DoubleNode<xType>* curr= head;
     int index = 1;
     if( head ==nullptr) return -1;
     while( curr->getNext()){
@@ -271,10 +271,10 @@ int DoublyLinkedList<ItemType> :: getIndexOf(const ItemType & item) const{
     return -1;
 }
 
-template <typename ItemType>
-void DoublyLinkedList<ItemType> ::display() const{
+template <typename xType>
+void DoublyLinkedList<xType> ::display() const{
     
-        DoubleNode<ItemType>* curr = head;
+        DoubleNode<xType>* curr = head;
         while( curr){
             std::cout<<curr->getItem()<<std::endl;
             curr = curr->getNext();
@@ -284,11 +284,11 @@ void DoublyLinkedList<ItemType> ::display() const{
 
 }
 
-template <typename ItemType>
-void DoublyLinkedList<ItemType> :: displayBackwards() const{
+template <typename xType>
+void DoublyLinkedList<xType> :: displayBackwards() const{
     
     
-    DoubleNode<ItemType>* curr = tail;
+    DoubleNode<xType>* curr = tail;
     while( curr ){
         std :: cout<< curr ->getItem()<<endl;
         curr = curr->getPrevious();
@@ -297,8 +297,8 @@ void DoublyLinkedList<ItemType> :: displayBackwards() const{
     
     /*
     <<<<<<<<<<<<<<<<< None recursive way, intutive way   >>>>>>>>>>>>>
-    vector <ItemType> myVector;
-    DoubleNode <ItemType>* curr = head;
+    vector <xType> myVector;
+    DoubleNode <xType>* curr = head;
     while( curr){
         myVector.push_back(curr->getItem());
         curr = curr->getNext();
@@ -323,62 +323,82 @@ If there are any nodes left over in L1 or L2 exclusively, append them to the end
 
 !!!  This makes a deep copy, does not modify calling list, nor paramater list   !!!
 */
-template <typename ItemType>
-DoublyLinkedList<ItemType> DoublyLinkedList<ItemType> :: interleave( 
-    const DoublyLinkedList<ItemType> & a_list){
+template <typename xType>
+DoublyLinkedList<xType> DoublyLinkedList<xType> :: interleave( 
+    const DoublyLinkedList<xType> & a_list){
 
         DoublyLinkedList result ();
         
-        DoubleNode<ItemType>* prev;
-        DoubleNode<ItemType>* curr;
+        DoubleNode<xType>* curr;
 
-        DoubleNode<ItemType>* first = this ->head;
-        DoubleNode<ItemType>* second = a_list.getHeadPtr();
+        DoubleNode<xType>* first = this ->head;
+        DoubleNode<xType>* second = a_list.getHeadPtr();
         // Checks to see if either one of the lists given is empty or not, assigns the
         //head pointer of result to the first non null head we see
         if( first !=NULL){
-            DoubleNode<ItemType> * temp = new DoubleNode(this->head->getItem());
-            result ->getHeadptr() = temp;
-            prev = temp;
+            DoubleNode<xType> * temp = new DoubleNode(this->head->getItem());
+            result.setHeadPtr(temp);
             curr = temp;
             first = this -> head ->getNext();
             
         }else if( second != NULL){
-            DoubleNode<ItemType> * temp = new DoubleNode(a_list ->getHeadPtr() -> getItem());
-            result ->getHeadptr() = temp;
-            prev = temp;
+            DoubleNode<xType> * temp = new DoubleNode(a_list ->getHeadPtr() -> getItem());
+            result.setHeadPtr(temp);
             curr = temp;
             second = second->getNext();
         }
         //In order to be consistent with the swapping pattern we need to check to see if the paramater list has a node,
         //then add that node to our result, and assign prev to that node
         if( second != nullptr){
-            DoubleNode<ItemType> * temp = new DoubleNode( a_list->getHeadPtr()->getItem());
-            prev->setNext(temp);
-            temp->setPrevious(prev);
-            curr = temp;
+            DoubleNode<xType> * temp = new DoubleNode( second->getItem());
+            curr->setNext(temp);
+            temp->setPrevious(curr);
             second = second ->getNext();
         }
         
         while(first || second){
-            if(first){
-                DoubleNode<ItemType>* temp = new DoubleNode(first->getItem());
+            if(first)
+            {
+                DoubleNode<xType>* temp = new DoubleNode(first->getItem());
+                curr->setNext(temp);
+                temp ->getPrevious(curr);
                 curr = temp;
-                prev->setNext(curr);
-                curr ->getPrevious(prev);
                 first = first->getNext();
             }
-            if(second){ 
-                DoubleNode<ItemType>* temp = new DoubleNode(second ->getItem());
+            if(second)
+            { 
+                DoubleNode<xType>* temp = new DoubleNode(second ->getItem());
+                curr->setNext(temp);
+                temp->setPrevious(curr);
                 curr = temp;
-                prev->setNext(curr);
-                curr ->getPrevious(prev);
                 second = second->getNext(); 
             }
         }
-        result.getTailPtr() = curr;
+        result.setSize(this->itemCount + a_list.itemCount);
+        result.setTailPtr(curr);
         return result;
 }
 
 
 
+
+template <typename xType>
+void DoublyLinkedList<xType> :: setHeadPtr(DoubleNode<xType>* node){
+    this-> head = node;
+
+}
+
+
+template <typename xType>
+void DoublyLinkedList<xType> :: setTailPtr(DoubleNode<xType>* node){
+    this-> tail = node;
+}
+
+
+
+
+
+template <typename xType>
+void DoublyLinkedList<xType> :: setSize( int val){
+    this->itemCount = val;
+}

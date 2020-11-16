@@ -5,8 +5,8 @@
 
 */
 #include "DoubleNode.hpp"
-template <typename ItemType> 
-DoubleNode <ItemType> ::DoubleNode(){
+template <typename xType> 
+DoubleNode <xType> ::DoubleNode(){
 
 };
 
@@ -14,43 +14,43 @@ DoubleNode <ItemType> ::DoubleNode(){
 
 
 
-template <typename ItemType> 
-DoubleNode <ItemType> :: DoubleNode(ItemType item){
+template <typename xType> 
+DoubleNode <xType> :: DoubleNode(xType item){
     this->item_ = item;
     prev=nullptr;
     next=nullptr;
     
 }
-template<typename ItemType>
-void DoubleNode <ItemType> :: setItem(const ItemType &anItem){
+template<typename xType>
+void DoubleNode <xType> :: setItem(const xType &anItem){
     this->item_ = anItem;
 };
 
 
-template<typename ItemType>
-void DoubleNode <ItemType> :: setPrevious(DoubleNode<ItemType> *previousNodePtr){
+template<typename xType>
+void DoubleNode <xType> :: setPrevious(DoubleNode<xType> *previousNodePtr){
     this->prev = previousNodePtr;
 }
 
-template<typename ItemType>
-void DoubleNode <ItemType> :: setNext(DoubleNode<ItemType> *nextNodePtr){
+template<typename xType>
+void DoubleNode <xType> :: setNext(DoubleNode<xType> *nextNodePtr){
     this->next = nextNodePtr;
 }
 
 
 
-template<typename ItemType>
-ItemType DoubleNode <ItemType>  :: getItem() const {
+template<typename xType>
+xType DoubleNode <xType>  :: getItem() const {
     return this->item_;
 }
 
-template<typename ItemType>
-DoubleNode<ItemType>* DoubleNode <ItemType> :: getNext() const{
+template<typename xType>
+DoubleNode<xType>* DoubleNode <xType> :: getNext() const{
     return this->next;
 }
 
-template<typename ItemType>
-DoubleNode<ItemType>* DoubleNode <ItemType> :: getPrevious() const{
+template<typename xType>
+DoubleNode<xType>* DoubleNode <xType> :: getPrevious() const{
     return this->prev;
 }
 

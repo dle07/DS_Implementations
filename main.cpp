@@ -11,12 +11,7 @@
 #include <iomanip>
 #include <sstream>
 
-#include "./LinkedList/Node.hpp"
-#include "./LinkedList/Node.cpp"
-#include "./LinkedList/LinkedList.hpp"
-#include "./LinkedList/LinkedList.cpp"
-#include "./Queue/QueueList.hpp"
-#include "./Queue/QueueList.cpp"
+
 #include "./AVL_Tree/AvlTree.hpp"
 using std :: string;
 using std :: cout;
@@ -29,7 +24,9 @@ int main(){
     for( int i = 1; i< 11; i++){
         myTree.insert(i);
     }
-    myTree.BFS();
+    myTree.bFS();
+    cout<<"Max: "<< myTree.max()->data_<<endl;
+    cout<<"Min: "<<myTree.min()->data_<<endl;
     
 }
 

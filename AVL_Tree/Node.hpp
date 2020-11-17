@@ -5,9 +5,9 @@ template<typename xType>
 class Node{
 
     public:
-    xType data_;
-    Node <xType>* left_;
-    Node <xType>* right_;
+    xType data_ ;
+    Node <xType>* left_ ;
+    Node <xType>* right_ ;
     Node();
     Node(xType data);
 

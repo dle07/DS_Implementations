@@ -53,11 +53,25 @@ bool AvlTree<xType> :: search( xType dataVal){
 
 template <typename xType>
 bool AvlTree<xType> :: search(Node<xType>* root, xType dataVal ){
-    if(root==nullptr)return false;
-    else if( root->data_ == dataVal) return true;
-    else if ( dataVal < root->data_) search(root->left_ , dataVal);
+    if(root==nullptr)return false;      //Exit condition
+    else if( root->data_ == dataVal) return true;       //We've found it, congrats.
+    else if ( dataVal < root->data_) search(root->left_ , dataVal); // is the data to the right?
     else search(root->right_, dataVal); //if the data to be found is to the right
 
+}
+
+template<typename xType>
+bool AvlTree<xType> :: iSearch(xType dataValue){
+    Node<xType>* curr = this->root_;
+    while( curr ){
+        xType currValue = curr->data_;
+        if( curr->data_ == currValue ) return true;
+        else if( dataValue < currValue ) curr = curr->left_;
+        else curr = curr->right_;
+    }
+
+
+    return false;
 }
 
 template <typename xType>

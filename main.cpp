@@ -27,6 +27,8 @@ int main(){
     myTree.bFS();
     cout<<"Max: "<< myTree.max()->data_<<endl;
     cout<<"Min: "<<myTree.min()->data_<<endl;
+    if( myTree.iSearch(5))cout<<"Found!!!!"<<endl;
+    if( !myTree.search(112))cout<<"Not found"<<endl;
     
 }
 

@@ -11,12 +11,19 @@
 #include <iomanip>
 #include <sstream>
 
+#include "PriorityQueue/PriorityQueue.hpp"
+#include "PriorityQueue/PriorityQueue.cpp"
 using namespace std;
 
 int main()
 {
     
-    cout<<-1/2<<endl;
+    vector<int> temp;
+    for( int i = 0; i <11; i++){
+        temp.push_back(i);
+    }
+    PriorityQueue myQueue(temp, maximum);
+    myQueue.heapSort();
     return 0;
 }
 

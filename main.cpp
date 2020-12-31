@@ -11,16 +11,17 @@
 #include <iomanip>
 #include <sstream>
 
+using namespace std;
 
-#include "./AVL_Tree/AvlTree.hpp"
-using std :: string;
-using std :: cout;
-using std :: endl;
-using std :: cin;
+int main()
+{
+    
+    cout<<-1/2<<endl;
+    return 0;
+}
 
-
-int main(){
-    AvlTree<int> myTree;
+/*
+AvlTree<int> myTree;
     for( int i = 1; i< 11; i++){
         myTree.insert(i);
     }
@@ -29,12 +30,6 @@ int main(){
     cout<<"Min: "<<myTree.min()->data_<<endl;
     if( myTree.iSearch(5))cout<<"Found!!!!"<<endl;
     if( !myTree.search(112))cout<<"Not found"<<endl;
-    
-}
-
-
-/*
-
 
 
 LinkedList<int> myStringList;

@@ -69,8 +69,6 @@ bool AvlTree<xType> :: iSearch(xType dataValue){
         else if( dataValue < currValue ) curr = curr->left_;
         else curr = curr->right_;
     }
-
-
     return false;
 }
 
@@ -183,4 +181,33 @@ void AvlTree<xType> :: postOrderTraversalImpl(Node<xType>* root)
     if( root->left_ )postOrderTraversalImpl(root->left_);   
     if( root->right_ )postOrderTraversalImpl(root->right_);
     cout<<root->data_<<endl;
+}
+
+
+template <typename xType>
+void AvlTree<xType>:: printRootToLeaf(Node<xType>* root){
+    if( root == nullptr){
+        return;
+    }
+    std :: string temp = root->val;
+    dfsPrintRootToLeaf(root,temp);
+}
+
+
+template <typename xType> 
+void AvlTree<xType> :: dfsPrintRootToLeaf(Node<xType>* root, string path){
+    if( root == nullptr) return;
+    path += "->" + root->val;
+    if(isLeaf(root)){
+        cout<<path<<endl;
+        return;
+    }
+    dfsPrintRootToLeaf( root -> left, path);
+    dfsPrintRootToLeaf( root -> right,path);
+}
+
+
+template<typename xType>
+bool AvlTree<xType> :: isLeaf(Node<xType>* root){
+        return (!root->left && !root->right);
 }

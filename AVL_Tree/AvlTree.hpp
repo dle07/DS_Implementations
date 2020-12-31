@@ -41,6 +41,14 @@ class AvlTree{
     void postOrderTraversalImpl(Node<xType>* root);
 
 
+    void printRootToLeaf(Node<xType>* root);
+    //We shall print in like so "3->2->1"
+    void dfsPrintRootToLeaf(Node<xType>*root, string path);
+
+    bool isLeaf(Node<xType>* root);
+
+
+
 
 
 };

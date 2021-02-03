@@ -189,7 +189,7 @@ void AvlTree<xType>:: printRootToLeaf(Node<xType>* root){
     if( root == nullptr){
         return;
     }
-    std :: string temp = root->val;
+    std :: string temp = root->data_;
     dfsPrintRootToLeaf(root,temp);
 }
 
@@ -197,7 +197,7 @@ void AvlTree<xType>:: printRootToLeaf(Node<xType>* root){
 template <typename xType> 
 void AvlTree<xType> :: dfsPrintRootToLeaf(Node<xType>* root, string path){
     if( root == nullptr) return;
-    path += "->" + root->val;
+    path += "->" + root->data_;
     if(isLeaf(root)){
         cout<<path<<endl;
         return;
@@ -210,4 +210,24 @@ void AvlTree<xType> :: dfsPrintRootToLeaf(Node<xType>* root, string path){
 template<typename xType>
 bool AvlTree<xType> :: isLeaf(Node<xType>* root){
         return (!root->left && !root->right);
+}
+
+
+template <typename xType>
+void AvlTree<xType> :: iterativeDfs(){
+
+    stack<Node<xType>*> st;
+    Node<xType>* curr = root_;
+    while(curr || !st.empty()){
+
+        while(curr){
+            st.push(curr);
+            curr = curr->left_;
+        }
+        //Curr must be null at this point
+        curr = st.top();
+        st.pop();
+        cout<<curr->data_<<" ";
+        curr = curr->right_;
+    }
 }

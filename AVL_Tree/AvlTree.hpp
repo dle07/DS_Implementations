@@ -7,10 +7,12 @@ Author: Daniel Le
 #include "Node.hpp"
 #include <queue>
 #include <iostream>
+#include <stack> //iterative
 
-using std:: endl;
-using std:: cout;
-using std:: string;
+using std :: endl;
+using std :: cout;
+using std :: string;
+using std :: stack;
 
 template <typename xType>
 class AvlTree{
@@ -44,6 +46,8 @@ class AvlTree{
     void printRootToLeaf(Node<xType>* root);
     //We shall print in like so "3->2->1"
     void dfsPrintRootToLeaf(Node<xType>*root, string path);
+
+    void iterativeDfs();
 
     bool isLeaf(Node<xType>* root);
 

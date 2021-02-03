@@ -13,30 +13,48 @@
 
 #include "PriorityQueue/PriorityQueue.hpp"
 #include "PriorityQueue/PriorityQueue.cpp"
+#include "DisjointSets/DisjSet.hpp"
+#include "DisjointSets/DisjSet.cpp"
+#include "AVL_Tree/AvlTree.hpp"
 using namespace std;
 
 int main()
 {
+    DisjSet myTestSet(6);
+    myTestSet.display();
+
+    myTestSet.unionize(0,1);
+    myTestSet.display();
+
+    myTestSet.unionize(2,3);
+    myTestSet.display();
+
+    myTestSet.unionize(4,5);
+    myTestSet.display();
+    cout<<"==========================="<<endl;
+    myTestSet.unionize(1,2);
+    myTestSet.display();
+    myTestSet.unionize(0,3);
+    myTestSet.display();
+    if(myTestSet.hasCycle()){
+        cout<<"Yes"<<endl;
+    }else{
+        cout<<"No"<<endl;
+    }
     
-    vector<int> temp;
+
+    
+    
+    return 0;
+}
+
+/*
+vector<int> temp;
     for( int i = 0; i <11; i++){
         temp.push_back(i);
     }
     PriorityQueue myQueue(temp, maximum);
     myQueue.heapSort();
-    return 0;
-}
-
-/*
-AvlTree<int> myTree;
-    for( int i = 1; i< 11; i++){
-        myTree.insert(i);
-    }
-    myTree.bFS();
-    cout<<"Max: "<< myTree.max()->data_<<endl;
-    cout<<"Min: "<<myTree.min()->data_<<endl;
-    if( myTree.iSearch(5))cout<<"Found!!!!"<<endl;
-    if( !myTree.search(112))cout<<"Not found"<<endl;
 
 
 LinkedList<int> myStringList;
